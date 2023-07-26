@@ -1,29 +1,21 @@
-import logo from './logo.svg';
+import React from 'react'
 import './App.css';
-import MyCircularQueue from './component/temp'
-import queue2 from './component/temp/index2'
-import maopaosort from './component/temp/maopaosort'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+// import { Router, Route, Link } from 'react-router'
+import Header from './component/pageComponent/Header';
+import Continue from './component/pageComponent/Continue';
+import {createMemoryHistory} from 'history';
 
-function App() {
+export default function App() {
+  const history = createMemoryHistory();
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+      <Router location={history.location} navigator={history}>
+        <Switch>
+          <Route path="/" element={<Header />}>
+            <Route path="/about" element={<Continue />} />
+          </Route>
+        </Switch>
+      </Router>
+  )
 }
-
-export default App;
